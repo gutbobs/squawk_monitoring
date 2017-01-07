@@ -25,7 +25,7 @@ class MyEventHandler(pyinotify.ProcessEvent):
 			else: squawk = None
 			
 			if "flight" in aircraft: flight = aircraft['flight']
-			else: flight = None
+			else: flight = "Unknown"
 			
 			if "lat" in aircraft: lat = aircraft['lat']
 			else: lat = None
@@ -42,6 +42,7 @@ class MyEventHandler(pyinotify.ProcessEvent):
 				subject = "Emergency on flight: {}".format(flight)
 				body = []
 				body.append("There has been an emergency on flight: {}".format(flight))
+				body.append("The hex code is: {}".format(hex_code) )	
 				body.append("The aircraft is squawking code: {}:{}".format(squawk,
 					interesting_squawk_codes[squawk]))
 				bodytext="\n".join(body)
